@@ -1,7 +1,7 @@
 # pi-lens-lean
 
 <!-- token-benchmark:summary:start -->
-> **Token benchmark: Lean 394, upstream `pi-lens@4.3.0` 2,538 — 84.5% fewer.**
+> **Token benchmark: Lean 394, upstream `pi-lens@4.4.10` 2,733 — 85.6% fewer.**
 <!-- token-benchmark:summary:end -->
 > **Full setup reference:** [Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
@@ -12,10 +12,10 @@ A lean wrapper around [`pi-lens`](https://github.com/apmantza/pi-lens). The upst
 ## Installation
 
 ```bash
-pi install git:github.com/kunkun9527/pi-lens-lean
+pi install git:github.com/b1299065633-bot/pi-lens-lean
 ```
 
-Not published to npm yet. To pin a release, append a tag: `git:github.com/kunkun9527/pi-lens-lean@v4.3.0-lean.2`. Remove `npm:pi-lens` first; loading both registers pi-lens twice. npm may warn that the `@ast-grep/cli` install script is not approved; ast-grep still works, so the warning can be ignored.
+Not published to npm yet. To pin a release, append a tag: `git:github.com/b1299065633-bot/pi-lens-lean@v4.4.10-lean.1`. Remove `npm:pi-lens` first; loading both registers pi-lens twice. npm may warn that the `@ast-grep/cli` install script is not approved; ast-grep still works, so the warning can be ignored.
 
 ## Differences from upstream
 
@@ -72,16 +72,16 @@ With only this extension enabled, its recurring model-facing initialization cont
 
 | Variant | Tool and prompt contribution | Total |
 | --- | --- | ---: |
-| Lean `pi-lens-lean@4.3.0` | `lens_code` (160) + `lens` (234) | **394** |
-| Upstream `pi-lens@4.3.0` | `lens_diagnostics` (613) + `symbol_search` (352) + `effective_config` (194) + `project_report` (235) + `module_report` (470) + `read_symbol` (233) + `read_enclosing` (322) + `pi_lens_activate_tools` (119) | **2,538** |
+| Lean `pi-lens-lean@4.4.10` | `lens_code` (160) + `lens` (234) | **394** |
+| Upstream `pi-lens@4.4.10` | `lens_diagnostics` (643) + `symbol_search` (384) + `effective_config` (209) + `project_report` (257) + `module_report` (565) + `read_symbol` (233) + `read_enclosing` (322) + `pi_lens_activate_tools` (120) | **2,733** |
 
-This saves **2,144 tokens (84.5%)**.
-Measured with Pi 1.0.3 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
+This saves **2,339 tokens (85.6%)**.
+Measured with Pi 1.5.0 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
 <!-- token-benchmark:benchmark:end -->
 
 ## Version
 
-The upstream runtime is pinned to `pi-lens@4.3.0` from npm. This repository is a fork of upstream: the default `main` branch holds this wrapper, and the `upstream` branch mirrors upstream pi-lens as a source reference.
+The upstream runtime is pinned to `pi-lens@4.4.10` from npm. This is a fork of [kunkun9527/pi-lens-lean](https://github.com/kunkun9527/pi-lens-lean), re-pinned to 4.4.10 and re-measured. This repository is a fork of upstream: the default `main` branch holds this wrapper, and the `upstream` branch mirrors upstream pi-lens as a source reference.
 
 ## Local development
 

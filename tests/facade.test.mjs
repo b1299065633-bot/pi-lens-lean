@@ -163,7 +163,9 @@ test("real pinned pi-lens provides every op and the guidance marker", async () =
   const { readFile } = await import("node:fs/promises");
   const dist = await readFile(new URL("../node_modules/pi-lens/dist/index.js", import.meta.url), "utf8");
   // index.ts drops messages starting with this prefix + the first guidance line.
-  assert.match(dist, /var SESSION_START_GUIDANCE = \[\s*"\\u\{1F4CC\} pi-lens active/);
+  // 4.4.10 起开场指引由 renderSessionStartGuidance() 渲染，字面量数组变成函数调用；标记行仍在 header 上。
+  assert.match(dist, /SESSION_START_GUIDANCE = (?:renderSessionStartGuidance\(\)|\[)/);
+  assert.match(dist, /"\\u\{1F4CC\} pi-lens active/);
   assert.match(dist, /content: `\[pi-lens automated context \\u2014 not a user request\]\r?\n\r?\n\$\{translateGuidanceToolNames\(guidance\.data\.content/);
 
   const real = await jiti.import("pi-lens", { default: true });
