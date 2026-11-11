@@ -1,7 +1,7 @@
 # pi-lens-lean
 
 <!-- token-benchmark:summary:start -->
-> **Token 基准：Lean 394，上游 `pi-lens@4.4.10` 2,733，减少 85.6%。**
+> **Token 基准：Lean 394，上游 `pi-lens@4.4.12` 2,733，减少 85.6%。**
 <!-- token-benchmark:summary:end -->
 > **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
@@ -15,13 +15,13 @@
 pi install git:github.com/b1299065633-bot/pi-lens-lean
 ```
 
-暂未发布到 npm。要固定版本，在后面加 tag：`git:github.com/b1299065633-bot/pi-lens-lean@v4.4.10-lean.1`。安装前先移除 `npm:pi-lens`，两个同时加载会把 pi-lens 注册两遍。npm 可能提示 `@ast-grep/cli` 的安装脚本未批准，不影响 ast-grep 使用，可以忽略。
+暂未发布到 npm。要固定版本,在后面加 tag:`git:github.com/b1299065633-bot/pi-lens-lean@v4.4.12`。安装前先移除 `npm:pi-lens`,两个同时加载会把 pi-lens 注册两遍。npm 可能提示 `@ast-grep/cli` 的安装脚本未批准,不影响 ast-grep 使用,可以忽略。
 
 ## 和上游的区别
 
 * **13 个工具变 2 个固定工具**：`lens_code`（找代码、读代码）和 `lens`（诊断、LSP、ast-grep、项目与配置）。`op` 直接用上游工具名，pi-lens 输出里"请调用 `module_report`"之类的提示照样对得上。
 * **工具列表全程不变**：上游的 `pi_lens_activate_tools` 会在会话中途改工具列表，让整段 prompt 缓存失效。这里丢掉这个工具，并把上游的 `setActiveTools` 变成空操作。
-* **不挂 skill**：上游通过 `resources_discover` 往 system prompt 列 4 个 skill（约 337 token，不在下面的基准里）。两个使用指南改写进 `help`，两个"给 pi-lens 写规则"的贡献者指南去掉。
+* **skill 静态声明**：上游通过 `resources_discover` 注册 4 个 skill，封装拦掉那个 handler，改用 `pi.skills` 静态声明同样的 4 个目录，skill 仍可被路由，但不走上游的动态注册。这部分开销与上游列 skill 相同（约 337 token，不在下面的基准里）。两个使用指南改写进 `help`，两个“给 pi-lens 写规则”的贡献者指南作为 skill 保留。
 * **去掉会话开头的用法提示**（约 197 token，一次性）。写后发现的问题、测试结果、"文件被自动格式化，编辑前请重读"的提醒都保留。
 * **自己校验参数**：宿主只按外层 schema 校验，所以包装层把字段映射到上游参数后，再用 pi-ai 的 `validateToolArguments` 按上游 schema 校验；拼错的参数名、JSON 写错、字段和 `input` 冲突都会直接报错，不会传给上游。
 
@@ -72,8 +72,8 @@ pi-lens 能看到路径后，它的 read-guard 会拦下本会话里没 `read` �
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `pi-lens-lean@4.4.10` | `lens_code` (160) + `lens` (234) | **394** |
-| 上游 `pi-lens@4.4.10` | `lens_diagnostics` (643) + `symbol_search` (384) + `effective_config` (209) + `project_report` (257) + `module_report` (565) + `read_symbol` (233) + `read_enclosing` (322) + `pi_lens_activate_tools` (120) | **2,733** |
+| Lean `pi-lens-lean@4.4.12` | `lens_code` (160) + `lens` (234) | **394** |
+| 上游 `pi-lens@4.4.12` | `lens_diagnostics` (643) + `symbol_search` (384) + `effective_config` (209) + `project_report` (257) + `module_report` (565) + `read_symbol` (233) + `read_enclosing` (322) + `pi_lens_activate_tools` (120) | **2,733** |
 
 节省 **2,339 tokens（85.6%）**。
 测量环境为 Pi 1.5.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
@@ -81,7 +81,7 @@ pi-lens 能看到路径后，它的 read-guard 会拦下本会话里没 `read` �
 
 ## 版本说明
 
-上游运行时锁定为 `pi-lens@4.4.10`（npm 包）。本仓库 fork 自 [kunkun9527/pi-lens-lean](https://github.com/kunkun9527/pi-lens-lean)，重新锁定到 4.4.10 并重测。本仓库 fork 自上游：默认的 `main` 分支放这个封装，`upstream` 分支同步上游 pi-lens 源码，作参考用。
+上游运行时锁定为 `pi-lens@4.4.12`（npm 包）。本仓库 fork 自 [kunkun9527/pi-lens-lean](https://github.com/kunkun9527/pi-lens-lean)，重新锁定到 4.4.12。本仓库 fork 自上游:默认的 `main` 分支放这个封装,`upstream` 分支同步上游 pi-lens 源码,作参考用。
 
 ## 本地开发
 

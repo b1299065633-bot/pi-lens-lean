@@ -1,5 +1,35 @@
 # Changelog
 
+## [4.4.12] - 2026-11-10
+
+Re-pinned the upstream runtime from `pi-lens@4.4.10` to **`pi-lens@4.4.12`**. The facade (`index.ts`) is unchanged; only the pin, the docs and the skill declaration moved.
+
+| Variant | Tools | Tokens |
+| --- | --- | ---: |
+| Lean `pi-lens-lean@4.4.12` | `lens_code` + `lens` | **394** |
+| Upstream `pi-lens@4.4.12` | 8 tools | **2,733** |
+
+Saves **2,339 tokens (85.6%)** per request. The lean number is owned by the facade, which replaces upstream's tool descriptions and schemas wholesale, so it does not move with upstream releases unless `index.ts` changes.
+
+### Skill declaration
+
+Upstream registers its four skills through a `resources_discover` handler. The facade still blocks that handler, but `package.json` now declares the same four directories through `pi.skills` (`./node_modules/pi-lens/skills`). Without the declaration the skills only resolved because a second, full `pi-lens` install happened to sit in the global npm tree; once that copy was retired the four skills silently disappeared from the router.
+
+### Upstream changes between 4.4.10 and 4.4.12
+
+4.4.11 is a large release (the compare covers 428 commits) and 4.4.12 adds 54 more. The parts that touch this wrapper's contract:
+
+- **MCP projection unified on `path`** (#5138): the six projected MCP tools now take `path` instead of `file`. The facade already routes every file argument onto `path`, so nothing changed here.
+- **Tool binary resolver** (#5410): a broken or absent project shim falls through to the managed and PATH rungs instead of failing the check.
+- **Write authorship** (#5417): `ast_grep_replace`, LSP edits and `lens_diagnostic_mark` share one source-file write seam.
+- **Adopted project trust** (#5469) and **strict enum unions** in the projected MCP schemas (#5471, #5473).
+- **Complexity delta metrics** (#5087) and runner timeout coalescing (#5413).
+
+### Compatibility check
+
+- `npm run check` passes: tsc clean, `tests/facade.test.mjs` 8/8 — including the case that resolves every facade `op` against the real pinned `pi-lens@4.4.12` schemas and the `renderSessionStartGuidance()` marker the wrapper strips.
+- The four skill directories are present under `node_modules/pi-lens/skills` and are what `pi.skills` points at.
+
 ## [4.4.10] - 2026-11-09
 
 Re-pinned the upstream runtime from `pi-lens@4.3.0` to **`pi-lens@4.4.10`** and re-measured on Pi 1.5.0. The facade itself is unchanged.
