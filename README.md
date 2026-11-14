@@ -12,10 +12,10 @@ A lean wrapper around [`pi-lens`](https://github.com/apmantza/pi-lens). The upst
 ## Installation
 
 ```bash
-pi install git:github.com/b1299065633-bot/pi-lens-lean
+pi install git:github.com/QUNIXNG/pi-lens-lean
 ```
 
-Not published to npm yet. To pin a release, append a tag: `git:github.com/b1299065633-bot/pi-lens-lean@v4.5.0`. Remove `npm:pi-lens` first; loading both registers pi-lens twice. npm may warn that the `@ast-grep/cli` install script is not approved; ast-grep still works, so the warning can be ignored.
+Not published to npm yet. To pin a release, append a tag: `git:github.com/QUNIXNG/pi-lens-lean@v4.5.0`. Remove `npm:pi-lens` first; loading both registers pi-lens twice. npm may warn that the `@ast-grep/cli` install script is not approved; ast-grep still works, so the warning can be ignored.
 
 ## Differences from upstream
 

@@ -5,6 +5,14 @@
   "type": "module",
   "description": "Lean wrapper for pi-lens: two fixed tools instead of thirteen, same runtime, the four skills declared statically.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QUNIXNG/pi-lens-lean.git"
+  },
+  "homepage": "https://github.com/QUNIXNG/pi-lens-lean#readme",
+  "bugs": {
+    "url": "https://github.com/QUNIXNG/pi-lens-lean/issues"
+  },
   "engines": {
     "node": ">=22.19.0"
   },
