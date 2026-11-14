@@ -14,6 +14,7 @@ Re-pinned the upstream runtime from `pi-lens@4.4.12` to **`pi-lens@4.5.0`**. The
 
 - `npm run check` passes: TypeScript is clean and `tests/facade.test.mjs` passes 8/8, including routing against the real `pi-lens@4.5.0` schemas.
 - Lean's two facade tools total **394 tokens** on the existing benchmark. The eight upstream tools total **2,733 tokens** on the same benchmark, a reduction of **85.6%**.
+- Updated the three `@earendil-works` development/test packages from 1.0.3 to 1.5.2. This removes the vulnerable transitive `minimatch` and `undici` versions; `npm audit` reports **0 vulnerabilities**. Re-ran the same typecheck and 8/8 facade tests after the dependency update.
 
 ## [4.4.12] - 2026-11-10
 
