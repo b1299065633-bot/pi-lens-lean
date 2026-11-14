@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.5.0] - 2026-11-14
+
+Re-pinned the upstream runtime from `pi-lens@4.4.12` to **`pi-lens@4.5.0`**. The facade (`index.ts`) is unchanged; only the pin, lockfile and documentation moved.
+
+### Relevant upstream changes
+
+- LSP navigation now accepts object-valued command arguments under non-strict schema conversion.
+- Diagnostics and ast-grep fixes improve Rust, Deno and Elixir LSP handling, rule-relative scanning, and formatter selection.
+- The Lean facade keeps its fixed two-tool surface and strips upstream activation and session-start guidance as before.
+
+### Verification
+
+- `npm run check` passes: TypeScript is clean and `tests/facade.test.mjs` passes 8/8, including routing against the real `pi-lens@4.5.0` schemas.
+- Lean's two facade tools total **394 tokens** on the existing benchmark. The eight upstream tools total **2,733 tokens** on the same benchmark, a reduction of **85.6%**.
+
 ## [4.4.12] - 2026-11-10
 
 Re-pinned the upstream runtime from `pi-lens@4.4.10` to **`pi-lens@4.4.12`**. The facade (`index.ts`) is unchanged; only the pin, the docs and the skill declaration moved.

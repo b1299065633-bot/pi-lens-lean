@@ -1,6 +1,6 @@
 {
   "name": "pi-lens-lean",
-  "version": "4.4.12",
+  "version": "4.5.0",
   "private": true,
   "type": "module",
   "description": "Lean wrapper for pi-lens: two fixed tools instead of thirteen, same runtime, the four skills declared statically.",
@@ -14,7 +14,7 @@
     "check": "npm run typecheck && npm test"
   },
   "dependencies": {
-    "pi-lens": "4.4.12"
+    "pi-lens": "4.5.0"
   },
   "peerDependencies": {
     "@earendil-works/pi-ai": ">=1.0.0",

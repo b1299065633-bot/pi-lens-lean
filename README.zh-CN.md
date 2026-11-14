@@ -1,7 +1,7 @@
 # pi-lens-lean
 
 <!-- token-benchmark:summary:start -->
-> **Token 基准：Lean 394，上游 `pi-lens@4.4.12` 2,733，减少 85.6%。**
+> **Token 基准：Lean 394，上游 `pi-lens@4.5.0` 2,733，减少 85.6%。**
 <!-- token-benchmark:summary:end -->
 > **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
@@ -15,7 +15,7 @@
 pi install git:github.com/b1299065633-bot/pi-lens-lean
 ```
 
-暂未发布到 npm。要固定版本,在后面加 tag:`git:github.com/b1299065633-bot/pi-lens-lean@v4.4.12`。安装前先移除 `npm:pi-lens`,两个同时加载会把 pi-lens 注册两遍。npm 可能提示 `@ast-grep/cli` 的安装脚本未批准,不影响 ast-grep 使用,可以忽略。
+暂未发布到 npm。要固定版本,在后面加 tag:`git:github.com/b1299065633-bot/pi-lens-lean@v4.5.0`。安装前先移除 `npm:pi-lens`,两个同时加载会把 pi-lens 注册两遍。npm 可能提示 `@ast-grep/cli` 的安装脚本未批准,不影响 ast-grep 使用,可以忽略。
 
 ## 和上游的区别
 
@@ -72,8 +72,8 @@ pi-lens 能看到路径后，它的 read-guard 会拦下本会话里没 `read` �
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `pi-lens-lean@4.4.12` | `lens_code` (160) + `lens` (234) | **394** |
-| 上游 `pi-lens@4.4.12` | `lens_diagnostics` (643) + `symbol_search` (384) + `effective_config` (209) + `project_report` (257) + `module_report` (565) + `read_symbol` (233) + `read_enclosing` (322) + `pi_lens_activate_tools` (120) | **2,733** |
+| Lean `pi-lens-lean@4.5.0` | `lens_code` (160) + `lens` (234) | **394** |
+| 上游 `pi-lens@4.5.0` | `lens_diagnostics` (643) + `symbol_search` (384) + `effective_config` (209) + `project_report` (257) + `module_report` (565) + `read_symbol` (233) + `read_enclosing` (322) + `pi_lens_activate_tools` (120) | **2,733** |
 
 节省 **2,339 tokens（85.6%）**。
 测量环境为 Pi 1.5.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
@@ -81,7 +81,7 @@ pi-lens 能看到路径后，它的 read-guard 会拦下本会话里没 `read` �
 
 ## 版本说明
 
-上游运行时锁定为 `pi-lens@4.4.12`（npm 包）。本仓库 fork 自 [kunkun9527/pi-lens-lean](https://github.com/kunkun9527/pi-lens-lean)，重新锁定到 4.4.12。本仓库 fork 自上游:默认的 `main` 分支放这个封装,`upstream` 分支同步上游 pi-lens 源码,作参考用。
+上游运行时锁定为 `pi-lens@4.5.0`（npm 包）。本仓库 fork 自 [kunkun9527/pi-lens-lean](https://github.com/kunkun9527/pi-lens-lean)，重新锁定到 4.5.0。本仓库 fork 自上游:默认的 `main` 分支放这个封装,`upstream` 分支同步上游 pi-lens 源码,作参考用。
 
 ## 本地开发
 
